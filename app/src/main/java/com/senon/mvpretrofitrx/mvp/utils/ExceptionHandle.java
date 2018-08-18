@@ -60,6 +60,10 @@ public class ExceptionHandle {
             ex = new ResponeThrowable(e, ERROR.SSL_ERROR);
             ex.message = "证书验证失败";
             return ex;
+        } else if (e instanceof ResponeThrowable) {
+//            ex = new ResponeThrowable(e, ERROR.FOLLOW_ERROR);
+//            ex.message = message;
+            return (ResponeThrowable)e;
         } else {
             ex = new ResponeThrowable(e, ERROR.UNKNOWN);
             ex.message = "未知错误";
@@ -93,20 +97,29 @@ public class ExceptionHandle {
          * 证书出错
          */
         public static final int SSL_ERROR = 1005;
+        /**
+         * 根据后台返回
+         */
+        public static final int FOLLOW_ERROR = 1010;
     }
 
     public static class ResponeThrowable extends Exception {
-        public int code;
+        public int code = ERROR.FOLLOW_ERROR;
         public String message;
 
         public ResponeThrowable(Throwable throwable, int code) {
             super(throwable);
             this.code = code;
         }
+        public ResponeThrowable(Throwable throwable,String message) {
+            super(throwable);
+            this.message = message;
+        }
     }
 
     public class ServerException extends RuntimeException {
         public int code;
         public String message;
+
     }
 }

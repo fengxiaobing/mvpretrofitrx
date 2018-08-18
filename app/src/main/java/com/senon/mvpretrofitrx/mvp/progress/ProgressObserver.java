@@ -58,6 +58,8 @@ public class ProgressObserver<T> implements Observer<T>, ProgressCancelListener 
     public void onNext(T t) {
         List<NewsDetail> newsDetails =((Map<String,List<NewsDetail>>) t).get("T1348647853363");
         listener.onNext(t);//可定制接口，通过code回调处理不同的业务、
+        //可以通过判断状态码在此返回后台给出的错误信息提示
+//        listener.onError(new ExceptionHandle.ResponeThrowable(new Exception(), "测试失败提示"));
     }
 
     @Override
