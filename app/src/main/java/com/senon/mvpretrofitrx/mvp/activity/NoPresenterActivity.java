@@ -12,7 +12,6 @@ import com.senon.mvpretrofitrx.mvp.base.BaseView;
 import com.senon.mvpretrofitrx.mvp.entity.Login;
 import com.senon.mvpretrofitrx.mvp.model.LoginModel;
 import com.senon.mvpretrofitrx.mvp.progress.ObserverResponseListener;
-import com.senon.mvpretrofitrx.mvp.utils.ExceptionHandle;
 import com.senon.mvpretrofitrx.mvp.utils.ToastUtil;
 
 import java.util.HashMap;
@@ -80,9 +79,9 @@ public class NoPresenterActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onError(ExceptionHandle.ResponeThrowable e) {
-                        if (this != null) {
-                            ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                    public void onError(String msg) {
+                        if(this != null){
+                            ToastUtil.showShortToast(msg);
                         }
                     }
                 });

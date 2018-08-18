@@ -2,19 +2,12 @@ package com.senon.mvpretrofitrx.mvp.presenter;
 
 import android.content.Context;
 
-import com.senon.mvpretrofitrx.mvp.base.BaseResponse;
-import com.senon.mvpretrofitrx.mvp.contract.LoginContract;
 import com.senon.mvpretrofitrx.mvp.contract.NewsContract;
-import com.senon.mvpretrofitrx.mvp.entity.Login;
 import com.senon.mvpretrofitrx.mvp.entity.NewsDetail;
-import com.senon.mvpretrofitrx.mvp.model.LoginModel;
 import com.senon.mvpretrofitrx.mvp.model.NewsModel;
-import com.senon.mvpretrofitrx.mvp.model.Test;
 import com.senon.mvpretrofitrx.mvp.progress.ObserverResponseListener;
-import com.senon.mvpretrofitrx.mvp.utils.ExceptionHandle;
 import com.senon.mvpretrofitrx.mvp.utils.ToastUtil;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +39,9 @@ public class NewsPresenter extends NewsContract.Presenter {
                 }
 
                 @Override
-                public void onError(ExceptionHandle.ResponeThrowable e) {
+                public void onError(String msg) {
                     if(getView() != null){
-                        ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                        ToastUtil.showShortToast(msg);
                     }
                 }
             });

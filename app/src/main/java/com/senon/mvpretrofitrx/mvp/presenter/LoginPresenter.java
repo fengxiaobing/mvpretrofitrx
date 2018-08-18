@@ -6,13 +6,10 @@ import com.senon.mvpretrofitrx.mvp.contract.LoginContract;
 import com.senon.mvpretrofitrx.mvp.entity.Login;
 import com.senon.mvpretrofitrx.mvp.model.LoginModel;
 import com.senon.mvpretrofitrx.mvp.progress.ObserverResponseListener;
-import com.senon.mvpretrofitrx.mvp.utils.ExceptionHandle;
 import com.senon.mvpretrofitrx.mvp.utils.ToastUtil;
 
 import java.util.HashMap;
 import java.util.List;
-
-import retrofit2.http.GET;
 
 /**
  * 作者：senon on 2017/12/27 10:34
@@ -40,10 +37,9 @@ public class LoginPresenter extends LoginContract.Presenter {
                 }
             }
             @Override
-            public void onError(ExceptionHandle.ResponeThrowable e) {
+            public void onError(String msg) {
                 if(getView() != null){
-                //// TODO: 2017/12/28 自定义处理异常
-                ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                    ToastUtil.showShortToast(msg);
                 }
             }
         });
@@ -61,9 +57,9 @@ public class LoginPresenter extends LoginContract.Presenter {
                 }
             }
             @Override
-            public void onError(ExceptionHandle.ResponeThrowable e) {
+            public void onError(String msg) {
                 if(getView() != null){
-                    ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                    ToastUtil.showShortToast(msg);
                 }
             }
         });
